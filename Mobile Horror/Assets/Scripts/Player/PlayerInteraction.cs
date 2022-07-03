@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [SerializeField] private PlayerInputs _playerInputs;
     [SerializeField] private Transform _camera;
     [SerializeField] private float _range;
     [SerializeField] private PlayerItem _playerItem;
+
+    private void OnEnable()
+    {
+        _playerInputs.InteractButtonDowned += Interact;
+    }
+
+    private void OnDisable()
+    {
+        _playerInputs.InteractButtonDowned -= Interact;
+    }
 
     public void Interact()
     {
@@ -17,6 +28,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 interactable.Interact(_playerItem.Current.Value);
             }
+     
         }
     }
 }

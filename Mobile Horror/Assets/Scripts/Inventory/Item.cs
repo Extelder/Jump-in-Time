@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : Pickup
+public class Item : Pickup, IInteractable
 {
     [Header("Inventory Item in scene")]
     public InventoryItem ReferenceInScene;
@@ -14,5 +14,10 @@ public class Item : Pickup
     {
         ItemPickuped.Invoke(ReferenceInScene);
         Destroy(gameObject);
+    }
+
+    public void Interact(InventoryItem item)
+    {
+        PickUp();
     }
 }
